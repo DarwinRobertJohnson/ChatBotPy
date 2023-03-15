@@ -1,10 +1,20 @@
 from random import randint
+from emoDBCon import happy,sad
+
+def printRS(rs):
+    for i in rs:
+        print(i[1])
+
+
+
+
+print(happy)
 
 greetings=["Hello","Hi","Howdy","Vanakkam","Namaskaram","salaam-malaekum"]
 fareWell=["bye","good bye","see ya","farewell"]
 
 
-emotions={"Happy":'Glade to hear that mate!',
+emotions={"Happy":"Glad to hear that mate!why dont't you burst out some move!",
           "Sad":"That's awfull tell me,how can I help you?",
           "Restless":"Slowdown my friend rushing to your grave isn't gonna help you"
             }
@@ -22,7 +32,22 @@ msg='''
     get some good adivise along the way
 '''
 
-#print("happy" in emotions)
+
+def processEmotion(msg):
+     msg=msg.capitalize()
+     if msg in greetings:
+        print(greetings[randint(0,len(greetings)-1)],"\nHow are you feeling today?")
+     else:
+        myList=msg.split()
+        print(myList)
+        for i in myList:
+            i=i.capitalize()
+            if i in happy:
+                print(emotions["Happy"])
+            elif i in sad:
+                print(emotions["Sad"])
+
+
 print(msg)
 while True:
     msg=input(">")
@@ -30,13 +55,4 @@ while True:
         print("Hope to see you again!")
         break
     else:
-        msg=msg.capitalize()
-        if msg in greetings:
-            print(greetings[randint(0,len(greetings)-1)])
-        else:
-              myList=msg.split()
-              print(myList)
-              for i in myList:
-                  i=i.capitalize()
-                  if i in emotions:
-                    print(processEmotion(i))
+       processEmotion(msg)
